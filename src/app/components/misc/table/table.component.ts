@@ -1,12 +1,14 @@
+
+import {merge as observableMerge,  BehaviorSubject ,  Observable } from 'rxjs';
+
+import {map} from 'rxjs/operators';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/observable';
 
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
+
+
+
 
 @Component({
   selector: 'app-table',
@@ -85,9 +87,9 @@ export class dataSource extends DataSource<any> {
         this.sort.sortChange
     ];
 
-    return Observable.merge(...displayDataChanges).map(() => {
+    return observableMerge(...displayDataChanges).pipe(map(() => {
         return this.getSortedData();
-    });
+    }));
     }
 
     disconnect() {}
