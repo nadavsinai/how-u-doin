@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
       -ms-transform: skew(0,-4deg);
       left: 0px;
       right: 0px;
+      top:47px;
       height: 520px;
       z-index: 1;
     }

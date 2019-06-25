@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import {Injectable} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
+import {auth} from 'firebase/app';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +9,8 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private auth: AngularFireAuth) { }
+    private auth: AngularFireAuth) {
+  }
 
   public onSuccess(): void {
     sessionStorage.setItem('session-alive', 'true');
@@ -24,12 +25,14 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  public getIdToken(): string {
-    firebase.auth().currentUser.getIdToken()
+  public getIdToken(): Promise<string> {
+    return auth().currentUser.getIdToken()
       .then(
-        (token: string) => this.token = token
+        (token: string) => {
+          this.token = token;
+          return this.token;
+        }
       );
-    return this.token;
   }
 
   public isAuthenticated(): string {

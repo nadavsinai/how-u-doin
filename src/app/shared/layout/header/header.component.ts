@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import * as firebase from 'firebase';
-
 import { AuthService, AlertService } from '../../services';
+import {auth} from 'firebase/app';
 
 @Component({
   selector: 'app-header',
@@ -53,15 +52,15 @@ export class HeaderComponent {
   }
 
   public userUid(): string {
-    return firebase.auth().currentUser.uid;
+    return auth().currentUser.uid;
   }
 
   public userEmail(): string {
-    return firebase.auth().currentUser.email;
+    return auth().currentUser.email;
   }
 
   public userName(): string {
-    return firebase.auth().currentUser.displayName;
+    return auth().currentUser.displayName;
   }
 
   public onLogout(): void {

@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 // Modules
-import { BlocksModule } from './components/blocks/blocks.module';
 import { AuthModule } from './pages/auth/auth.module';
 import { BackgroundsModule } from './components/backgrounds/backgrounds.module';
 import { ProfileModule } from './pages/profile/profile.module';
@@ -64,7 +63,6 @@ import { EmailMeComponent } from './components/email-me/email-me.component';
     HttpClientModule,
     AppRoutingModule,
     PipesModule,
-    BlocksModule,
     AuthModule,
     BackgroundsModule,
     ProfileModule,

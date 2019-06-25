@@ -1,9 +1,9 @@
 export const firebaseKeys = {
-  // For your own projects please use different keys
-  apiKey: 'AIzaSyBUYZcc_HKi1TckbZPpSjSkxyFvml3Is0A',
-  authDomain: 'angular4materialdesign.firebaseapp.com',
-  databaseURL: 'https://angular4materialdesign.firebaseio.com',
-  projectId: 'angular4materialdesign',
-  storageBucket: 'angular4materialdesign.appspot.com',
-  messagingSenderId: '136985605193'
-}
+  apiKey: "AIzaSyAMERlJscgdx2MjGxi74nHXaSkE2Mc70_Q",
+  authDomain: "casualty-reporting.firebaseapp.com",
+  databaseURL: "https://casualty-reporting.firebaseio.com",
+  projectId: "casualty-reporting",
+  storageBucket: "",
+  messagingSenderId: "183836784935",
+  appId: "1:183836784935:web:dd872f698b1ff773"
+};

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
-import { AuthService } from '@shared';
+import {AuthService} from '@shared';
 
 @Component({
   selector: 'app-auth',
@@ -9,8 +9,10 @@ import { AuthService } from '@shared';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+  providers = ['google'];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   public onSuccess(): void {
     return this.authService.onSuccess();

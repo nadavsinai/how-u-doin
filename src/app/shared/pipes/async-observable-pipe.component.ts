@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import {interval, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-async-observable-pipe',
@@ -18,7 +18,7 @@ export class AsyncObservablePipeComponent {
   public counter$: Observable<number>;
 
   constructor() {
-    this.counter$ = Observable.interval(1000);
+    this.counter$ = interval(1000);
   }
 
 }

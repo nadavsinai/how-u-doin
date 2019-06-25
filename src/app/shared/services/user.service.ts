@@ -1,23 +1,22 @@
-import * as firebase from 'firebase';
-import { Injectable } from '@angular/core';
-
-import { User } from '../models';
-import { AlertService } from './alert.service';
+import {Injectable} from '@angular/core';
+import {AlertService} from './alert.service';
+import {auth, database} from 'firebase/app';
 
 @Injectable()
 export class UserService {
 
-  constructor(private alertService: AlertService) {}
+  constructor(private alertService: AlertService) {
+  }
 
   public saveUserInfo(uid: string, name: string, email: string): Promise<string> {
-    return firebase.database().ref().child('users/' + uid).set({
+    return database().ref().child('users/' + uid).set({
       name: name,
       email: email
     });
   }
 
   public updateUserInfo(uid: string, displayName: string, bio: string): Promise<string> {
-    return firebase.database().ref().child('users/' + uid).update({
+    return database().ref().child('users/' + uid).update({
       displayName: displayName,
       bio: bio
     });
@@ -25,7 +24,7 @@ export class UserService {
 
   public keepInTouch(email: string) {
     this.alertService.showToaster('Your email is saved');
-    return firebase.database().ref().child('touch/').push({
+    return database().ref().child('touch/').push({
       email: email
     });
   }
@@ -40,7 +39,7 @@ export class UserService {
     message: string
   ) {
     this.alertService.showToaster('This contact form is saved');
-    return firebase.database().ref().child('contactform/').push({
+    return database().ref().child('contactform/').push({
       company: company,
       firstname: firstname,
       lastname: lastname,
@@ -52,7 +51,7 @@ export class UserService {
   }
 
   public getUserProfileInformation(): void {
-    const user = firebase.auth().currentUser;
+    const user = auth().currentUser;
     let name, email, photoUrl, uid, emailVerified;
 
     if (user != null) {
@@ -65,7 +64,7 @@ export class UserService {
   }
 
   public verificationUserEmail(): Promise<void> {
-    return firebase.auth().currentUser.sendEmailVerification().then(() => {
+    return auth().currentUser.sendEmailVerification().then(() => {
       // Email sent.
     }, (error) => {
       // An error happened.
@@ -73,7 +72,7 @@ export class UserService {
   }
 
   public sendUserPasswordResetEmail(): Promise<void> {
-    return firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email).then(() => {
+    return auth().sendPasswordResetEmail(auth().currentUser.email).then(() => {
       // Email sent.
     }, (error) => {
       // An error happened.
