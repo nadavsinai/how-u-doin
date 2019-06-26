@@ -1,7 +1,9 @@
-export class User {
-  public displayName: string;
-  public email: string;
-  public bio: any;
-  public image: any;
-  public uid: any;
+import {Role} from '@shared/interfaces';
+
+export interface User  {
+  displayName: string;
+  email: string;
+  uid: any;
+  roles: Role[]
 }
+

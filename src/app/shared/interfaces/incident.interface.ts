@@ -43,6 +43,3 @@ export enum Role {
   reportingUser = 'reportingUser'
 }
 
-export interface User extends firebase.User {
-  roles: Role[]
-}
