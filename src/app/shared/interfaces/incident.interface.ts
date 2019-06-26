@@ -37,6 +37,7 @@ export interface Treatment {
   reportedBy: string // uid;
   treatmentNotes: string[];
   status: Status;
+  NextTreatmentIn?:number;
 }
 
 export enum Role {

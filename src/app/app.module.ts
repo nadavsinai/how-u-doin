@@ -15,7 +15,8 @@ import {
   MatSidenavModule,
   MatSnackBarModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTableModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -63,7 +64,7 @@ import { TreatmentDialogComponent } from './pages/treatment-dialog/treatment-dia
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
     MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
-    MatCardModule, MatTabsModule, MatIconModule, MatSelectModule,
+    MatCardModule, MatTabsModule, MatIconModule, MatTableModule, MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
