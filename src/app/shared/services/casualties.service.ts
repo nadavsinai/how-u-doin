@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import {Casualty, Incident, Severity, Status, Treatment} from '@shared/interfaces';
+import {AngularFirestore, CollectionReference, Query} from '@angular/fire/firestore';
+import {Casualty, Severity, Status, Treatment} from '@shared/interfaces';
 import {firestore} from 'firebase/app';
 import {GeolocationService} from '@shared/services/geolocation.service';
 import {UserService} from '@shared/services/user.service';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class CasualtiesService {
   constructor(private db: AngularFirestore, private geoLocation: GeolocationService, private userService: UserService) {
   }
 
-  private getCollection(incident: string) {
-    return this.db.collection(`/incidents/${incident}`);
+  private getCollection(incident: string, query?: (ref: CollectionReference) => Query) {
+    return this.db.collection<Casualty>(`/incidents/${incident}/casualties`, query);
   }
 
   public getAllCasualties(incident: string) {
@@ -21,24 +22,22 @@ export class CasualtiesService {
   }
 
 
-  async addCasualty(incident: string, id: string): Promise<firestore.DocumentReference> {
-    const position: Position = await this.geoLocation.getLocation();
+  addCasualty(incident: string, id: string): Promise<firestore.DocumentReference> {
     const casualty: Casualty = {
-      id,
-      treatments: []
+      id
     };
     return this.getCollection(incident).add(casualty);
   }
 
   async addTreatment(incident: string, casualtyID: string, treatmentNotes: string[], severity: Severity, status: Status) {
-    let casualtyDoc = await this.getCollection(incident).doc<Casualty>(casualtyID).get().toPromise();
-    if (!casualtyDoc.exists) {
-      const casualtyRef = await this.addCasualty(incident, casualtyID);
-      casualtyDoc = await casualtyRef.get();
+    let casualtyRef = this.getCollection(incident).doc<Casualty>(casualtyID).ref;
+
+    if (!(await casualtyRef.get()).exists) {
+      casualtyRef = await this.addCasualty(incident, casualtyID);
     }
-    const casualty = casualtyDoc.data() as Casualty;
     const currentLocation = await this.geoLocation.getLocation();
     const newTreatment: Treatment = {
+      id: '11',
       treatmentNotes: treatmentNotes,
       severity: severity,
       reportedBy: this.userService.currentUser.uid,
@@ -46,10 +45,20 @@ export class CasualtiesService {
       location: new firestore.GeoPoint(currentLocation.coords.latitude, currentLocation.coords.longitude),
       timestamp: firestore.Timestamp.fromMillis(currentLocation.timestamp),
     };
-    return casualtyDoc.ref.update({treatments: [...casualty.treatments, newTreatment]});
+    return casualtyRef.collection('treatments').add(newTreatment);
   }
 
-  getCatuality(incidentID: string, id: string) {
-    return this.getCollection(incidentID).doc(id);
+  getCasualty(incidentID: string, id: string) {
+    return this.getCollection(incidentID).doc<Casualty>(id);
+  }
+
+  getCasualityWithTreatments(incidentID: string, id: string) {
+    const ref = this.getCasualty(incidentID, id);
+    return ref.valueChanges().pipe(
+      switchMap((casualty) => {
+        return ref.collection('treatments').valueChanges().pipe(
+          map(treatments => ({...casualty, treatments: treatments}))
+        );
+      }));
   }
 }

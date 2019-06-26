@@ -10,11 +10,11 @@ import {
   MatIconModule,
   MatInputModule,
   MatMenuModule,
-  MatNativeDateModule,
+  MatNativeDateModule, MatSelectModule,
   MatSidenavModule,
-  MatSnackBarModule,
-  MatTabsModule,
-  MatToolbarModule
+  MatSnackBarModule, MatToolbarModule,
+
+
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -32,14 +32,15 @@ import {firebaseKeys} from './firebase.config';
 import {HomeComponent} from './pages/home/home.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {PageNotFoundComponent} from './pages/not-found/not-found.component';
-import { AngularFirestoreModule} from '@angular/fire/firestore';
-import { AdminComponent } from './pages/admin/admin.component';
-import { MapComponent } from './pages/admin/map/map.component';
-import { TableComponent } from './pages/admin/table/table.component';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AdminComponent} from './pages/admin/admin.component';
+import {MapComponent} from './pages/admin/map/map.component';
+import {TableComponent} from './pages/admin/table/table.component';
 import {IncidentsService} from '@shared/services/incidents.service';
 import {GeolocationService} from '@shared/services/geolocation.service';
 
-import { AgmCoreModule } from '@agm/core';
+import {AgmCoreModule} from '@agm/core';
+import {IncidentSelectionComponent} from './pages/incident-selection/incident-selection.component';
 
 // Components
 
@@ -54,14 +55,15 @@ import { AgmCoreModule } from '@agm/core';
     AdminComponent,
     MapComponent,
     TableComponent,
+    IncidentSelectionComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
-    MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
-    MatCardModule, MatTabsModule, MatIconModule,
-    FormsModule,
+    MatDialogModule, MatSidenavModule, MatNativeDateModule,
+    MatCardModule, MatIconModule,MatToolbarModule,
+    FormsModule, MatSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -73,7 +75,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyDaivUsyEwoRvQ7kcoeHn6PWHzVFpgau9k'
     })
   ],
-  
+
   providers: [
     UserService,
     AlertService,
@@ -82,9 +84,7 @@ import { AgmCoreModule } from '@agm/core';
     AuthGuardService,
     AuthService,
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

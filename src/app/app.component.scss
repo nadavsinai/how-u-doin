@@ -2,7 +2,14 @@
   padding: 20px;
 }
 
-.app-content mat-card{
+::ng-deep router-outlet + * {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-content mat-card {
   margin: 20px;
 }
 
