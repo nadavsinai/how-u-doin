@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import  'firebase/auth';
 import {auth} from 'firebase/app';
-
-import { WindowService, PhoneNumber, AuthService, AlertService } from '@shared';
+import { PhoneNumber, AuthService, AlertService } from '@shared';
 
 @Component({
   selector: 'app-phone-signin',
@@ -19,7 +17,7 @@ export class PhoneSigninComponent implements OnInit {
   verificationCode: string;
   currentUser: any;
 
-  constructor(private win: WindowService,
+  constructor(
               private router: Router,
               private authService: AuthService,
               private alertService: AlertService) {
@@ -27,8 +25,7 @@ export class PhoneSigninComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.windowRef = this.win.windowRef
-    this.windowRef.recaptchaVerifier = new auth.RecaptchaVerifier('recaptcha-container');
+    (window as any).recaptchaVerifier = new auth.RecaptchaVerifier('recaptcha-container');
     this.windowRef.recaptchaVerifier.render()
   }
 

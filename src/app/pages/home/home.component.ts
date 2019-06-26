@@ -4,7 +4,14 @@ import { Component } from '@angular/core';
   selector: 'app-home',
   templateUrl: 'home.component.html',
   styles: [`
-  button {
+    mat-card-content,mat-card-title{
+      display: flex;
+      justify-content: center;
+    }
+    button.reportBtn {
+      
+    }
+    button.goToTop {
     position: fixed;
     bottom: 70px;
     float: right;

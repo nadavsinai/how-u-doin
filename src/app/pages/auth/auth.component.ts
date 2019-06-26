@@ -14,7 +14,7 @@ export class AuthComponent {
   constructor(private authService: AuthService) {
   }
 
-  public onSuccess(): void {
+  public onSuccess() {
     return this.authService.onSuccess();
   }
 

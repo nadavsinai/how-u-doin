@@ -1,17 +1,13 @@
 <!-- Sidenav -->
-  <mat-sidenav mode="over" opened="false" #sidenav class="sidenav">
+<mat-sidenav mode="over" opened="false" #sidenav class="sidenav">
 
   <img [src]="angularImage">
 
-  <div class="menu-li                                                                                                                                                                   nk">
+  <div
+    class="menu-li                                                                                                                                                                   nk">
     <button mat-button routerLink="/home" (click)="sidenav.close()">
       <mat-icon class="home">home</mat-icon>
       <span>Home</span>
-    </button>
-
-    <button mat-button routerLink="/about" (click)="sidenav.close()">
-      <mat-icon class="about">pageview</mat-icon>
-      <span>About</span>
     </button>
 
     <button mat-button routerLink="/contact" (click)="sidenav.close()">
@@ -19,17 +15,12 @@
       <span>Contact</span>
     </button>
 
-    <button mat-button routerLink="/misc" (click)="sidenav.close()">
-      <mat-icon class="misc">burst_mode</mat-icon>
-      <span>Misc</span>
-    </button>
-
     <hr>
 
     <div *ngIf="!authService.isAuthenticated(); else logout">
       <button mat-button routerLink="/auth" (click)="sidenav.close()">
         <mat-icon class="login">lock_open</mat-icon>
-        <span>Auth</span>
+        <span>Login/register</span>
       </button>
     </div>
 
@@ -46,15 +37,15 @@
 <!-- Header -->
 <mat-toolbar color="primary">
 
-  <span><a href="/"><app-titlecase-pipe></app-titlecase-pipe></a></span>
+
 
   <!-- Sidenav activate -->
   <div class="sidenav-content">
     <button type="button" mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
   </div>
-
+  <span><a href="/">Casualty Reporting</a></span>
   <!-- Menu -->
   <span class="spacer"></span>
 
@@ -78,7 +69,7 @@
       <mat-icon>more_vert</mat-icon>
     </button>
 
-    <mat-menu #menu="matMenu" >
+    <mat-menu #menu="matMenu">
       <a
         mat-menu-item
         [routerLink]="'/profile'">

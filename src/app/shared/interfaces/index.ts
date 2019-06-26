@@ -1,2 +1,1 @@
-export * from './scene.interface';
-export * from './image.interface';
+export * from 'src/app/shared/interfaces/incident.interface';

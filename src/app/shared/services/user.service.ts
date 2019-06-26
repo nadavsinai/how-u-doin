@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {AlertService} from './alert.service';
 import {auth, database} from 'firebase/app';
-
+import {AngularFireDatabase} from '@angular/fire/database'
 @Injectable()
 export class UserService {
 
-  constructor(private alertService: AlertService) {
+  constructor(private alertService: AlertService,private db:AngularFireDatabase) {
   }
 
   public saveUserInfo(uid: string, name: string, email: string): Promise<string> {
-    return database().ref().child('users/' + uid).set({
+    return this.db.database.ref('users/' + uid).set({
       name: name,
       email: email
     });
