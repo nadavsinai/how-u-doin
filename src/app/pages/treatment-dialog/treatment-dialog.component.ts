@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl} from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { Status, Severity, Casualty } from '../../shared/interfaces/incident.interface';
-import { Severity } from '@shared/interfaces';
 
 @Component({
   selector: 'app-treatment-dialog',
