@@ -36,6 +36,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AdminComponent } from './pages/admin/admin.component';
 import { MapComponent } from './pages/admin/map/map.component';
 import { TableComponent } from './pages/admin/table/table.component';
+import {IncidentsService} from '@shared/services/incidents.service';
 
 // Components
 
@@ -69,6 +70,7 @@ import { TableComponent } from './pages/admin/table/table.component';
   providers: [
     UserService,
     AlertService,
+    IncidentsService,
     AuthGuardService,
     AuthService,
   ],
