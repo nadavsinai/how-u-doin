@@ -54,7 +54,6 @@ import { TableComponent } from './pages/admin/table/table.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTreeModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
     MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
     MatCardModule, MatTabsModule, MatIconModule,
