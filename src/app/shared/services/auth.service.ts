@@ -8,27 +8,26 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private auth: AngularFireAuth) {
+    public auth: AngularFireAuth) {
+
   }
 
-  public async onSuccess(): Promise<void> {
-    sessionStorage.setItem('session-alive', 'true');
+  public async onSuccess(): Promise<boolean> {
     this.token = await this.getIdToken();
-    this.router.navigate(['/']);
-    console.log('AUTH: ', this.auth);
+    return this.router.navigate(['/']);
   }
 
-  public logout(): void {
-    sessionStorage.removeItem('session-alive');
+  public async logout(): Promise<boolean> {
     this.token = null;
-    this.router.navigate(['/']);
+    await this.auth.auth.signOut();
+    return this.router.navigate(['/']);
   }
 
   public getIdToken(): Promise<string> {
-    return this.auth.idToken.toPromise()
+    return this.auth.auth.currentUser.getIdToken();
   }
 
-  public isAuthenticated(): string {
-    return sessionStorage.getItem('session-alive');
+  public isAuthenticated(): boolean {
+    return this.token != null;
   }
 }

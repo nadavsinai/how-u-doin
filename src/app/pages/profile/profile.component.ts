@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
 import {UserService, AlertService} from '@shared';
-import {auth, database} from 'firebase/app';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-profile',
@@ -25,33 +25,28 @@ import {auth, database} from 'firebase/app';
   ]
 })
 export class ProfileComponent implements OnInit {
-  public uid = auth().currentUser.uid;
+  public uid = this.userService.currentUser.uid;
 
   public fullImagePath: string = '/assets/img/mb-bg-04.png';
   public profileTitle: string = 'My profile';
-  public displayName: string = 'Your username';
-  public bio: any = 'Your bio';
-  public state: string = 'small';
 
+  public state: string = 'small';
+  currentUserFromDb$ = this.db.doc('users/' + this.uid).get();
   constructor(
+    private db: AngularFirestore,
     private userService: UserService,
     private alertService: AlertService) {
   }
 
-  public ngOnInit(): Promise<void> {
-    return database().ref().child('users/' + this.uid).once('value').then((snap) => {
-      this.displayName = snap.val().displayName,
-        this.bio = snap.val().bio;
-    });
+  public ngOnInit(){
   }
 
   public animateImage(): void {
     this.state = (this.state === 'small' ? 'large' : 'small');
   }
 
-  public userEmail(): void {
-    this.userService.getUserProfileInformation();
-    auth().currentUser.email;
+  public userEmail(): string{
+    return this.userService.currentUser.email;
   }
 
   public onPasswordReset(): void {

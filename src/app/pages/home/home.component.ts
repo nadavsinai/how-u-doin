@@ -26,4 +26,7 @@ export class HomeComponent {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
+  onBtnClick() {
+    console.log('here')
+  }
 }

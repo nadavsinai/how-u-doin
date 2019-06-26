@@ -15,6 +15,7 @@ import { ProfileSettingsComponent } from './pages/profile/profile-settings.compo
 
 // Protected
 import { AuthGuardService } from '@shared';
+import {AdminComponent} from 'src/app/pages/admin/admin.component';
 
 // Routing
 const appRoutes: Routes = [
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'auth', component: AuthComponent },
-
+  { path:'admin',component:AdminComponent},
   // Protected pages
   // { path: 'profile/:uid/:name', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },

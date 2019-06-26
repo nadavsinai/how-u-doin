@@ -14,12 +14,11 @@ import {
   MatSidenavModule,
   MatSnackBarModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule, MatTreeModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxAuthFirebaseUIModule} from 'ngx-auth-firebaseui';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
 // Modules
 import {AuthModule} from './pages/auth/auth.module';
 import {ProfileModule} from './pages/profile/profile.module';
@@ -33,6 +32,10 @@ import {firebaseKeys} from './firebase.config';
 import {HomeComponent} from './pages/home/home.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {PageNotFoundComponent} from './pages/not-found/not-found.component';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AdminComponent } from './pages/admin/admin.component';
+import { MapComponent } from './pages/admin/map/map.component';
+import { TableComponent } from './pages/admin/table/table.component';
 
 // Components
 
@@ -44,10 +47,14 @@ import {PageNotFoundComponent} from './pages/not-found/not-found.component';
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
+    AdminComponent,
+    MapComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatTreeModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
     MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
     MatCardModule, MatTabsModule, MatIconModule,
@@ -57,7 +64,7 @@ import {PageNotFoundComponent} from './pages/not-found/not-found.component';
     AppRoutingModule,
     AuthModule,
     ProfileModule,
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     NgxAuthFirebaseUIModule.forRoot(firebaseKeys)
   ],
   providers: [

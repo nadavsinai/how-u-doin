@@ -1,7 +1,7 @@
 <!-- Sidenav -->
 <mat-sidenav mode="over" opened="false" #sidenav class="sidenav">
 
-  <img [src]="angularImage">
+  <img [src]="logo">
 
   <div
     class="menu-li                                                                                                                                                                   nk">
@@ -25,7 +25,8 @@
     </div>
 
     <ng-template #logout>
-      <button mat-button (click)="onLogout()" (click)="sidenav.close()">
+      <span> {{authService.currentUser?.displayName }}</span>
+      <button mat-button (click)="onLogout() && sidenav.close()">
         <mat-icon class="logout">lock_outline</mat-icon>
         <span>Logout</span>
       </button>
@@ -45,7 +46,7 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <span><a href="/">Casualty Reporting</a></span>
+  <span><a routerLink="/">Casualty Reporting</a></span>
   <!-- Menu -->
   <span class="spacer"></span>
 
@@ -59,8 +60,9 @@
     <button type="button" routerLink="/auth" mat-icon-button>
       <mat-icon>lock_open</mat-icon>
     </button>
-  </div>
 
+    <button type="button" routerLink='/admin'>Admin</button>
+  </div>
 
   <ng-template #loggedin>
     <h4>Welcome</h4>

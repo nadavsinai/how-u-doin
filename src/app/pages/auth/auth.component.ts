@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {NgForm} from '@angular/forms';
-
 import {AuthService} from '@shared';
 
 @Component({
@@ -14,8 +12,6 @@ export class AuthComponent {
   constructor(private authService: AuthService) {
   }
 
-  public onSuccess() {
-    return this.authService.onSuccess();
-  }
+  onSuccess = this.authService.onSuccess;
 
 }

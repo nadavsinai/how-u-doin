@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { AuthService, AlertService } from '../../services';
-import {auth} from 'firebase/app';
+import {Component} from '@angular/core';
+import {AuthService, AlertService} from '../../services';
 
 @Component({
   selector: 'app-header',
@@ -8,31 +7,17 @@ import {auth} from 'firebase/app';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  public isAuthenticated: string;
-  public angularImage: string = '/assets/img/incident.svg';
+  public logo: string = '/assets/img/incident.svg';
 
-  public menuItems: Object[] = []
+  public menuItems: Object[] = [];
 
   constructor(
     public authService: AuthService,
     private alertService: AlertService,
-    ) {
-      this.isAuthenticated = this.authService.isAuthenticated()
+  ) {
   }
 
-  public userUid(): string {
-    return auth().currentUser.uid;
-  }
-
-  public userEmail(): string {
-    return auth().currentUser.email;
-  }
-
-  public userName(): string {
-    return auth().currentUser.displayName;
-  }
-
-  public onLogout(): void {
+  public onLogout(): Promise<boolean> {
     this.alertService.showToaster('Logout succesful');
     return this.authService.logout();
   }

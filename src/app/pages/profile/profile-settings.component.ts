@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import 'firebase/database';
-import 'firebase/auth';
-import {auth,database} from 'firebase/app';
-
-import { AuthService, AlertService, UserService } from '@shared';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {FirebaseFirestore, FirebaseAuth} from '@angular/fire';
+import {AuthService, AlertService, UserService} from '@shared';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-profile-settings',
@@ -12,20 +11,24 @@ import { AuthService, AlertService, UserService } from '@shared';
   styleUrls: ['./profile-settings.component.scss']
 })
 export class ProfileSettingsComponent implements OnInit {
-  public uid = auth().currentUser.uid;
+  public uid:string;
   public displayName: string = 'Your username';
   public bio: any = 'Your bio';
 
   constructor(
     private authService: AuthService,
     private alertService: AlertService,
-    private userService: UserService) {
+    private userService: UserService,
+    private db:AngularFirestore,
+    private auth:AngularFireAuth,
+  ) {
   }
 
-  public ngOnInit(): Promise<void> {
-    return database().ref().child(`users/${this.uid}`).once('value').then((snap) => {
-      this.displayName = snap.val().displayName;
-      this.bio = snap.val().bio;
+  public async ngOnInit(): Promise<void> {
+    this.uid = (await this.auth.user.toPromise()).uid;
+    this.db.doc(`users/${this.uid}`).get().toPromise().then((snap) => {
+      this.displayName = snap.data().displayName;
+      this.bio = snap.data().bio;
     });
   }
 
@@ -37,7 +40,7 @@ export class ProfileSettingsComponent implements OnInit {
   public onUpdateUserInfo(form: NgForm): void {
     const displayName = form.value.displayName;
     const bio = form.value.bio;
-    this.userService.updateUserInfo(auth().currentUser.uid, displayName, bio);
+    this.userService.updateUserInfo(this.uid, displayName, bio);
     this.alertService.showToaster('Your settings are saved');
   }
 
