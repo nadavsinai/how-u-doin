@@ -1,1 +1,23 @@
-<p>treatment-dialog works!</p>
+<div class="container">
+    <form class="treat-case" [formGroup]="formGroup">
+        <p><mat-form-field class="id">
+            <input matInput placeholder="ID"  formControlName="id">
+        </mat-form-field></p>
+        <p><mat-form-field class="time">
+                <input matInput placeholder="Time" formControlName="time"  value="27.06.2019 15:00:42">
+            </mat-form-field>
+            <mat-form-field class="location">
+                <input matInput placeholder="Location" formControlName="location"  value="123.32e, 32.55n">
+            </mat-form-field></p>
+        <p><mat-form-field class="severity">
+            <mat-select placeholder="Severity" formControlName="severity">
+                    <mat-option *ngFor="let sev of severities" [value]="sev">{{sev}}</mat-option>
+            </mat-select>
+        </mat-form-field></p>
+        <p><mat-form-field class="status">
+                <mat-select placeholder="Status" formControlName="statusss">
+                    <mat-option *ngFor="let st of statuses" [value]="st">{{st}}</mat-option>
+                </mat-select>
+            </mat-form-field></p>
+        </form>
+</div>

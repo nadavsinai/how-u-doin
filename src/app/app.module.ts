@@ -3,6 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatSelectModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -62,7 +63,7 @@ import { TreatmentDialogComponent } from './pages/treatment-dialog/treatment-dia
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
     MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
-    MatCardModule, MatTabsModule, MatIconModule,
+    MatCardModule, MatTabsModule, MatIconModule, MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
