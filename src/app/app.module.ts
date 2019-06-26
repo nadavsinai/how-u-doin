@@ -40,6 +40,7 @@ import {IncidentsService} from '@shared/services/incidents.service';
 import {GeolocationService} from '@shared/services/geolocation.service';
 
 import { AgmCoreModule } from '@agm/core';
+import { TreatmentDialogComponent } from './pages/treatment-dialog/treatment-dialog.component';
 
 // Components
 
@@ -54,6 +55,7 @@ import { AgmCoreModule } from '@agm/core';
     AdminComponent,
     MapComponent,
     TableComponent,
+    TreatmentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyDaivUsyEwoRvQ7kcoeHn6PWHzVFpgau9k'
     })
   ],
-  
+
   providers: [
     UserService,
     AlertService,
