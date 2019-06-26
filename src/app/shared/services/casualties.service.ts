@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Casualty, Incident, Severity, Status, Treatment} from '@shared/interfaces';
-import {firestore} from 'firebase';
+import {firestore} from 'firebase/app';
 import {GeolocationService} from '@shared/services/geolocation.service';
 import {UserService} from '@shared/services/user.service';
 

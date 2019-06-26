@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Incident} from '@shared/interfaces';
-import {firestore} from 'firebase';
-import {GeolocationService,} from '@shared/services/geolocation.service'
-import { UserService} from '@shared/services/user.service'
+import {firestore} from 'firebase/app';
+import {GeolocationService,} from '@shared/services/geolocation.service';
+import {UserService} from '@shared/services/user.service';
 
 @Injectable({
   providedIn: 'root'

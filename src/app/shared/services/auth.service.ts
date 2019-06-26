@@ -12,10 +12,14 @@ export class AuthService {
 
   }
 
-  public async onSuccess(): Promise<boolean> {
-    this.token = await this.getIdToken();
+  public onSuccess = async () => {
+    try {
+      this.token = await this.getIdToken();
+    } catch (e) {
+      console.log(e);
+    }
     return this.router.navigate(['/']);
-  }
+  };
 
   public async logout(): Promise<boolean> {
     this.token = null;
