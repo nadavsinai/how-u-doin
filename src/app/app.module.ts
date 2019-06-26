@@ -43,6 +43,7 @@ import {GeolocationService} from '@shared/services/geolocation.service';
 
 import { AgmCoreModule } from '@agm/core';
 import { TreatmentDialogComponent } from './pages/treatment-dialog/treatment-dialog.component';
+import { CasualtiesService } from './shared/services/casualties.service';
 
 // Components
 
@@ -85,6 +86,7 @@ import { TreatmentDialogComponent } from './pages/treatment-dialog/treatment-dia
     IncidentsService,
     AuthGuardService,
     AuthService,
+    CasualtiesService,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

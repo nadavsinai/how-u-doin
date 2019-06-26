@@ -13,7 +13,7 @@ export class CasualtiesService {
   }
 
   private getCollection(incident: string) {
-    return this.db.collection(`/incidents/${incident}`);
+    return this.db.collection(`/incidents/${incident}/casualties`);
   }
 
   public getAllCasualties(incident: string) {
@@ -49,7 +49,7 @@ export class CasualtiesService {
     return casualtyDoc.ref.update({treatments: [...casualty.treatments, newTreatment]});
   }
 
-  getCatuality(incidentID: string, id: string) {
-    return this.getCollection(incidentID).doc(id);
+  public getCasualty(incidentID: string, id: string) {
+    return this.getCollection(incidentID).doc<Casualty>(id);
   }
 }
