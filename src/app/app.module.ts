@@ -37,6 +37,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { MapComponent } from './pages/admin/map/map.component';
 import { TableComponent } from './pages/admin/table/table.component';
 import {IncidentsService} from '@shared/services/incidents.service';
+import {GeolocationService} from '@shared/services/geolocation.service';
 
 // Components
 
@@ -70,6 +71,7 @@ import {IncidentsService} from '@shared/services/incidents.service';
   providers: [
     UserService,
     AlertService,
+    GeolocationService,
     IncidentsService,
     AuthGuardService,
     AuthService,

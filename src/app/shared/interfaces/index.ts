@@ -1,1 +1,1 @@
-export * from 'src/app/shared/interfaces/incident.interface';
+export * from './incident.interface';

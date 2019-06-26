@@ -14,12 +14,12 @@ export enum Severity {
 export interface Incident {
   location: Location;
   reportingTime: TimeStamp;
+  reportedBy: string // uid;
   casualties?: Casualty[];
 }
 
 export interface Casualty {
   id: string;
-  location: Location;
   treatments: Treatment[];
 }
 
@@ -34,7 +34,7 @@ export interface Treatment {
   location: firebase.firestore.GeoPoint;
   timestamp: firebase.firestore.Timestamp;
   severity: Severity;
-  reportedBy: firebase.firestore.DocumentReference, // User
+  reportedBy: string // uid;
   treatmentNotes: string[];
   status: Status;
 }
