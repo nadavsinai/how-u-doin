@@ -1,3 +1,9 @@
 <p>
-  map works!
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [latitude]="cords.latitude" [longitude]="cords.longitude">
+  <agm-marker *ngFor="let marker of casualties" [latitude]="marker.treatments[0].location.latitude" [longitude]="marker.treatments[0].location.longitude">
+    <agm-info-window>{{marker.id}}</agm-info-window>
+  </agm-marker>
+</agm-map>
 </p>

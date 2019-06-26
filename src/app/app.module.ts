@@ -39,6 +39,8 @@ import { TableComponent } from './pages/admin/table/table.component';
 import {IncidentsService} from '@shared/services/incidents.service';
 import {GeolocationService} from '@shared/services/geolocation.service';
 
+import { AgmCoreModule } from '@agm/core';
+
 // Components
 
 @NgModule({
@@ -66,8 +68,12 @@ import {GeolocationService} from '@shared/services/geolocation.service';
     AuthModule,
     ProfileModule,
     AngularFirestoreModule,
-    NgxAuthFirebaseUIModule.forRoot(firebaseKeys)
+    NgxAuthFirebaseUIModule.forRoot(firebaseKeys),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDaivUsyEwoRvQ7kcoeHn6PWHzVFpgau9k'
+    })
   ],
+  
   providers: [
     UserService,
     AlertService,
