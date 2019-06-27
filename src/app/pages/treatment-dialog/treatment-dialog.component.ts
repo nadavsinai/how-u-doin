@@ -25,6 +25,7 @@ export class TreatmentDialogComponent implements OnInit {
   severities = Object.values(Severity);
   private subscriptions: Subscription[] = [];
   @Input() incidentID: string;
+  treatments: Treatment[] = [];
 
   constructor(private casualtySvc: CasualtiesService, private geoLocationService: GeolocationService) {
   }
@@ -35,7 +36,9 @@ export class TreatmentDialogComponent implements OnInit {
   }
 
   readCasualtyData(id: string) {
-    if (!id) id="-1";
+    if (!id) {
+      id = '-1';
+    }
     return this.casualtySvc.getCasualty(this.incidentID, id).get();
   }
 
@@ -43,7 +46,7 @@ export class TreatmentDialogComponent implements OnInit {
     let newTreatment: Partial<Treatment> = {
       severity: this.formGroup.value['severity'] as Severity,
       status: this.formGroup.value['statusss'] as Status,
-      treatmentNotes: this.formGroup.value['notes'],      
+      treatmentNotes: this.formGroup.value['notes'],
     };
     this.casualtySvc.addTreatment(this.incidentID, this.formGroup.value['id'], newTreatment as Treatment);
   }
@@ -56,6 +59,7 @@ export class TreatmentDialogComponent implements OnInit {
       .subscribe(casualtyDoc => {
         if (casualtyDoc.exists && casualtyDoc.data().treatments.length > 0) {
           const treatments = casualtyDoc.data().treatments;
+          this.treatments = treatments;
           const lastTreatment = treatments[treatments.length - 1];
           this.formGroup.patchValue({statusss: lastTreatment.status, severity: lastTreatment.severity, notes: lastTreatment.treatmentNotes});
         }

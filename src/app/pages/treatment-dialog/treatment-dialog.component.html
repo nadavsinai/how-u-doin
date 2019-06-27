@@ -43,10 +43,10 @@
           </mat-form-field>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="treatments.length">
           <td colspan="2" class="past">
             <label>Previous Treatments:</label>
-            <app-treatment-table [treatments]=""></app-treatment-table>
+            <app-treatment-table [treatments]="treatments"></app-treatment-table>
         </td>
       </tr>
       <tr>

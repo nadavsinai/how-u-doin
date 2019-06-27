@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Treatment } from '../../../shared/interfaces/incident.interface';
+import {CasualtiesService} from '@shared/services';
 
 @Component({
   selector: 'app-treatment-table',
@@ -9,8 +10,8 @@ import { Treatment } from '../../../shared/interfaces/incident.interface';
 export class TreatmentTableComponent implements OnInit {
 
   @Input() treatments: Treatment[];
-  displayedColumns: string[] = ['time', 'status', 'severity', 'treatmentNotes']; //nextTreatmentIn
-
+  displayedColumns: string[] = ['timestamp', 'status', 'severity', 'treatmentNotes']; //nextTreatmentIn
+  printTimeStamp = CasualtiesService.printTimeStamp;
   constructor() { }
 
   ngOnInit() {
