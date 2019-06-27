@@ -22,6 +22,7 @@ export class IncidentManagementComponent implements OnInit {
   child: 'map' | 'treatment' = 'treatment';
   private currentIncident$: Observable<Incident>;
   casualties$: Observable<Casualty[]> = this.casualtiesSvc.getAllCasualties(this.currentIncidentID);
+  myCasualties$: Observable<Casualty[]> = this.casualtiesSvc.getUserCasualties(this.currentIncidentID);
 
 
   constructor(

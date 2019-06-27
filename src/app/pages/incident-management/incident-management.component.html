@@ -13,5 +13,7 @@
       <app-map *ngSwitchCase="'map'" [casualties]="casualties$|async" [cords]="currentIncident.location"></app-map>
       <app-treatment-dialog *ngSwitchCase="'treatment'" [incidentID]="currentIncidentID"></app-treatment-dialog>
     </ng-container>
+    <mat-label>Your Casualties</mat-label>
+    <app-table [casualties]="myCasualties$|async"></app-table>
   </mat-card-content>
 </mat-card>

@@ -4,6 +4,7 @@ import {Casualty, Treatment} from '@shared/interfaces';
 import {firestore} from 'firebase/app';
 import {GeolocationService} from '@shared/services/geolocation.service';
 import {UserService} from '@shared/services/user.service';
+import {filter, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,14 @@ export class CasualtiesService {
 
   public getAllCasualties(incident: string) {
     return this.getCollection(incident).valueChanges();
+  }
+
+  public getUserCasualties(incident: string) {
+    return this.getCollection(incident).valueChanges().pipe(map(casualties => {
+        return casualties.filter((casualty) => casualty.treatments
+          .some((treatment) => treatment.reportedBy === this.userService.currentUser.uid));
+      }
+    ));
   }
 
 

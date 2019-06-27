@@ -1,43 +1,53 @@
 <div class="container">
-    <form class="treat-case" [formGroup]="formGroup">
-        <table>
-            <tr>
-                <td colspan="2"><mat-form-field class="id">
-                <input matInput placeholder="ID"  formControlName="id">
-                </mat-form-field></td>
-            </tr>
-            <tr>
-                <td><mat-form-field class="time">
-                <input matInput placeholder="Time" formControlName="time"  value="27.06.2019 15:00:42">
-                </mat-form-field></td>
-                <td><mat-form-field class="location">
-                <input matInput placeholder="Location" formControlName="location"  value="123.32e, 32.55n">
-                </mat-form-field></td>
-            </tr>
-            <tr><td colspan="2" class="severity">
-                <label>Severity: </label>
-                <mat-button-toggle-group formControlName="severity">
-                    <mat-button-toggle *ngFor="let sev of severities" [value]="sev">{{sev}}</mat-button-toggle>
-                </mat-button-toggle-group>
-            </td></tr>
-            <tr><td colspan="2" class="status">
-                <label>Status: </label>
-                <mat-button-toggle-group formControlName="statusss">
-                    <mat-button-toggle *ngFor="let st of statuses" [value]="st">{{st}}</mat-button-toggle>
-                </mat-button-toggle-group>
-            </td></tr>
-            <tr><td colspan="2">
-                <mat-form-field class="notes">
-                    <textarea matInput placeholder="Treatment Notes" formControlName="notes"></textarea>
-                </mat-form-field>
-            </td></tr>
-            <tr><td colspan="2" class="past">
-                Past treatments<br>
-                Bla bla bla
-            </td></tr>
-            <tr><td colspan="2" class="addButton">
-                <button mat-button>Add</button>
-            </td></tr>
-        </table>
-    </form>
+  <form class="treat-case" [formGroup]="formGroup">
+    <table>
+      <tr>
+        <td colspan="2">
+          <mat-form-field class="id">
+            <input matInput placeholder="ID" formControlName="id">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="time">
+            <input matInput placeholder="Time" formControlName="time" value="27.06.2019 15:00:42">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="location">
+            <input matInput placeholder="Location" formControlName="location" value="123.32e, 32.55n">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="severity">
+          <label>Severity: </label>
+          <mat-button-toggle-group formControlName="severity">
+            <mat-button-toggle *ngFor="let sev of severities" [value]="sev">{{sev}}</mat-button-toggle>
+          </mat-button-toggle-group>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="status">
+          <label>Status: </label>
+          <mat-button-toggle-group formControlName="statusss">
+            <mat-button-toggle *ngFor="let st of statuses" [value]="st">{{st}}</mat-button-toggle>
+          </mat-button-toggle-group>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <mat-form-field class="notes">
+            <textarea matInput placeholder="Treatment Notes" formControlName="notes"></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="addButton">
+          <button mat-raised-button color="warn">Add</button>
+        </td>
+      </tr>
+    </table>
+  </form>
 </div>
