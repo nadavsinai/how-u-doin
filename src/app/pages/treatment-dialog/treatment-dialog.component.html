@@ -45,8 +45,12 @@
       </tr>
       <tr>
           <td colspan="2" class="past">
-            Past treatments<br>
-            Blaaaaaaa
+            <label>Previous Treatments:</label>
+            <mat-list dense formControlName="pastTreats">
+                    <mat-list-item> Pepper </mat-list-item>
+                    <mat-list-item> Salt </mat-list-item>
+                    <mat-list-item> Paprika </mat-list-item>
+            </mat-list>
         </td>
       </tr>
       <tr><td colspan="2">
@@ -56,7 +60,7 @@
       <tr><td colspan="2" class="addButton">
       <tr>
           <td colspan="2" class="addButton">
-            <button mat-raised-button color="warn">Add</button>
+            <button mat-raised-button color="warn" (click)="addTreatment()">Add</button>
           </td>
      </tr>
     </table>
