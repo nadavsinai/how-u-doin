@@ -15,7 +15,8 @@ import {
   MatSidenavModule,
   MatSnackBarModule,
   MatToolbarModule,
-  MatTableModule
+  MatTableModule,
+  MatRadioModule,
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -69,6 +70,7 @@ import {IncidentSelectionComponent} from './pages/incident-selection/incident-se
     FormsModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
     MatCardModule, MatIconModule, MatToolbarModule,
     FormsModule, MatSelectModule,
+    MatRadioModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
