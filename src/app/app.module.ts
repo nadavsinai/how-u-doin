@@ -17,6 +17,7 @@ import {
   MatToolbarModule,
   MatTableModule,
   MatRadioModule,
+  MatButtonToggleModule,
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -71,7 +72,7 @@ import {IncidentManagementComponent} from './pages/incident-management/incident-
     FormsModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
     MatCardModule, MatIconModule, MatToolbarModule,
     FormsModule, MatSelectModule,
-    MatRadioModule,
+    MatRadioModule, MatButtonToggleModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
