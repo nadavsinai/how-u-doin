@@ -45,6 +45,7 @@ import {TreatmentDialogComponent} from './pages/treatment-dialog/treatment-dialo
 import {AgmCoreModule} from '@agm/core';
 import {IncidentSelectionComponent} from './pages/incident-selection/incident-selection.component';
 import {IncidentManagementComponent} from './pages/incident-management/incident-management.component';
+import { TreatmentTableComponent } from './pages/treatment-dialog/treatment-table/treatment-table.component';
 import {CanvasComponent} from 'src/app/components/canvas-body.component';
 
 // Components
@@ -64,6 +65,7 @@ import {CanvasComponent} from 'src/app/components/canvas-body.component';
     TreatmentDialogComponent,
     IncidentSelectionComponent,
     IncidentManagementComponent,
+    TreatmentTableComponent,
 
   ],
   imports: [
