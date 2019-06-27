@@ -21,22 +21,22 @@ export class CasualtiesService {
   }
 
 
-  async addCasualty(incident: string, id: string): Promise<firestore.DocumentReference> {
-    const position: Position = await this.geoLocation.getLocation();
-    const casualty: Casualty = {
-      id,
-      treatments: []
-    };
-    return this.getCollection(incident).add(casualty);
+  async addCasualty(incident: string, id: string): Promise<Casualty> {
+    this.geoLocation.getLocation().then((position) => {
+      const casualty: Casualty = {
+        id,
+        treatments: []
+      };
+      this.getCollection(incident).add(casualty);
+    });
+    return this.getCasualty(incident, id);
   }
-
+/*
   async addTreatment(incident: string, casualtyID: string, treatmentNotes: string[], severity: Severity, status: Status) {
-    let casualtyDoc = await this.getCollection(incident).doc<Casualty>(casualtyID).get().toPromise();
-    if (!casualtyDoc.exists) {
-      const casualtyRef = await this.addCasualty(incident, casualtyID);
-      casualtyDoc = await casualtyRef.get();
+    let casualty = await this.getCasualty(incident, casualtyID);
+    if (casualty.id === "") {
+      casualty = await this.addCasualty(incident, casualtyID);
     }
-    const casualty = casualtyDoc.data() as Casualty;
     const currentLocation = await this.geoLocation.getLocation();
     const newTreatment: Treatment = {
       treatmentNotes: treatmentNotes,
@@ -48,8 +48,17 @@ export class CasualtiesService {
     };
     return casualtyDoc.ref.update({treatments: [...casualty.treatments, newTreatment]});
   }
-
-  public getCasualty(incidentID: string, id: string) {
-    return this.getCollection(incidentID).doc<Casualty>(id);
+*/
+  public async getCasualty(incidentID: string, id: string): Promise<Casualty> {
+    let casualty: Casualty = {id: "", treatments: []};
+    const casualtyQry = this.getCollection(incidentID).doc<Casualty>(id);
+    const casualtyDoc = await casualtyQry.get().toPromise();
+    if (!casualtyDoc.exists) return casualty;
+    casualty.id = casualtyDoc.id;
+    const treatments = casualtyQry.collection('treatments');
+    const treatmentsDoc = await treatments.get().toPromise();
+    const qry = await treatmentsDoc.query.orderBy('timestamp', 'desc').get();
+    qry.forEach((treatment) => {casualty.treatments.push(treatment.data() as Treatment)});
+    return casualty;
   }
 }

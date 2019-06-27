@@ -20,24 +20,14 @@ export class TreatmentDialogComponent implements OnInit {
 
   statuses = Object.values(Status);
   severities = Object.values(Severity);
-  treatmentList = [];
+  casualty: Casualty = null;
 
   constructor(private casualtySvc: CasualtiesService) { }
 
-  async readCasualtyData(id: string) {
-    this.treatmentList = [];
-    if (id === '') {return;};
-    const casualty = this.casualtySvc.getCasualty('0', id);
-    const casualtyDoc = await casualty.get().toPromise();
-    if (casualtyDoc.exists) {
-//      const treatments = (casualtyDoc.data() as Casualty).treatments;
-      const treatments = casualty.collection('treatments');
-      const treatmentsDoc = await treatments.get().toPromise();
-      const qry = await treatmentsDoc.query.orderBy('timestamp', 'desc').get();
-      qry.forEach((treatment) => {this.treatmentList.push(treatment.data())});
-    }
-    if (this.treatmentList.length > 0) {
-      this.formGroup.patchValue({statusss: this.treatmentList[0].status, severity: this.treatmentList[0].severity});
+  readCasualtyData(id: string) {
+    this.casualtySvc.getCasualty('0', id).then(casualty => {this.casualty = casualty});
+    if (this.casualty && this.casualty.treatments.length > 0) {
+      this.formGroup.patchValue({statusss: this.casualty.treatments[0].status, severity: this.casualty.treatments[0].severity});
     }
   }
 
