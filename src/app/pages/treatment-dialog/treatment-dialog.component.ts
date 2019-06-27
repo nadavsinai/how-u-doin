@@ -35,16 +35,17 @@ export class TreatmentDialogComponent implements OnInit {
   }
 
   readCasualtyData(id: string) {
+    if (!id) id="-1";
     return this.casualtySvc.getCasualty(this.incidentID, id).get();
   }
 
   addTreatment() {
-    let newTreatment: Treatment = {
-      severity: Severity[this.formGroup.value['severity']],
-      status: Status[this.formGroup.value['statusss']],
-      treatmentNotes: this.formGroup.value['notes'],
+    let newTreatment: Partial<Treatment> = {
+      severity: this.formGroup.value['severity'] as Severity,
+      status: this.formGroup.value['statusss'] as Status,
+      treatmentNotes: this.formGroup.value['notes'],      
     };
-    console.log(newTreatment);
+    this.casualtySvc.addTreatment(this.incidentID, this.formGroup.value['id'], newTreatment as Treatment);
   }
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class TreatmentDialogComponent implements OnInit {
         if (casualtyDoc.exists && casualtyDoc.data().treatments.length > 0) {
           const treatments = casualtyDoc.data().treatments;
           const lastTreatment = treatments[treatments.length - 1];
-          this.formGroup.patchValue({statusss: lastTreatment.status, severity: lastTreatment.severity});
+          this.formGroup.patchValue({statusss: lastTreatment.status, severity: lastTreatment.severity, notes: lastTreatment.treatmentNotes});
         }
       }));
     this.subscriptions.push(this.geoLocationService.watchPosition()
