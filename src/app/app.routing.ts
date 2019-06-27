@@ -30,9 +30,9 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'admin', component: AdminComponent},
-  {path: 'incident', component: IncidentSelectionComponent},
+  {path: 'incident', component: IncidentSelectionComponent, canActivate: [AuthGuardService]},
   {
-    path: 'incident/:incidentID', component: IncidentManagementComponent, children: [
+    path: 'incident/:incidentID', canActivate: [AuthGuardService], component: IncidentManagementComponent, children: [
       {path: 'treatment', component: TreatmentDialogComponent},
       {path: 'map', component: MapComponent}
     ]
