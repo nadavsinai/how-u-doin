@@ -4,7 +4,7 @@ import {CasualtiesService, IncidentsService} from '@shared/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {firestore} from 'firebase/app' ;
-import {Casualty, Incident} from '@shared/interfaces';
+import {CasualtyWithID, Casualty, Incident} from '@shared/interfaces';
 
 
 @Component({
@@ -21,8 +21,8 @@ export class IncidentManagementComponent implements OnInit {
     })));
   child: 'map' | 'treatment' = 'treatment';
   private currentIncident$: Observable<Incident>;
-  casualties$: Observable<Casualty[]> = this.casualtiesSvc.getAllCasualties(this.currentIncidentID);
-  myCasualties$: Observable<Casualty[]> = this.casualtiesSvc.getUserCasualties(this.currentIncidentID);
+  casualties$: Observable<CasualtyWithID[]>;
+  myCasualties$: Observable<CasualtyWithID[]>;
 
 
   constructor(
@@ -33,6 +33,8 @@ export class IncidentManagementComponent implements OnInit {
   ) {
     this.currentIncidentID = this.activatedRoute.snapshot.paramMap.get('incidentID');
     this.currentIncident$ = this.incidentService.getIncident$(this.currentIncidentID);
+    this.casualties$ = this.casualtiesSvc.getAllCasualties(this.currentIncidentID);
+    this.myCasualties$ = this.casualtiesSvc.getUserCasualties(this.currentIncidentID);
 
   }
 

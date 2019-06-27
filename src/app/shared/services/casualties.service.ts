@@ -24,7 +24,7 @@ export class CasualtiesService {
   }
 
   public getUserCasualties(incident: string) {
-    return this.getCollection(incident).valueChanges().pipe(
+    return this.getAllCasualties(incident).pipe(
       startWith([]),
       map(casualties => {
         return casualties.filter((casualty) => casualty.treatments

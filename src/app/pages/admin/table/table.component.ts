@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Time} from '@angular/common';
-import {Incident, Status, Severity, CasualityWithID, Treatment} from '../../../shared/interfaces/incident.interface';
+import {Incident, Status, Severity, CasualtyWithID, Treatment} from '../../../shared/interfaces/incident.interface';
 import { DataSource } from '@angular/cdk/table';
 
 export interface TableElement {
@@ -19,7 +19,7 @@ export interface TableElement {
 
 
 export class TableComponent implements OnInit {
-  @Input() casualties: CasualityWithID[];
+  @Input() casualties: CasualtyWithID[];
   displayedColumns: string[] = ['id', 'status', 'severity', 'treatmentNotes']; //nextTreatmentIn
   ELEMENT_DATA: TableElement[];
 
