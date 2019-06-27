@@ -3,6 +3,8 @@ import {defer, Observable} from 'rxjs';
 import {CasualtiesService} from '@shared/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
+import {firestore} from 'firebase/app' ;
+
 
 @Component({
   selector: 'app-incident-management',
@@ -10,11 +12,14 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./incident-management.component.css']
 })
 export class IncidentManagementComponent implements OnInit {
-  private currentIncidentID: string;
+  currentIncidentID: string;
   casualtiesNumber$: Observable<number> = defer(() => this.casualtiesSvc.getAllCasualties(this.currentIncidentID)
     .pipe(map((casualties) => {
       return casualties.length;
     })));
+  child: 'map' | 'treatment' = 'treatment';
+  //todo : get from incident
+  incidentLocation: firestore.GeoPoint  = new firestore.GeoPoint(34, 34);
 
 
   constructor(
@@ -28,4 +33,7 @@ export class IncidentManagementComponent implements OnInit {
   ngOnInit() {
   }
 
+  setChild(child: 'map' | 'treatment') {
+    this.child = child;
+  }
 }

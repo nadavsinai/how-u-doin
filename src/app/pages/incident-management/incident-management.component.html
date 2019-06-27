@@ -2,13 +2,16 @@
   <mat-card-title>
     Incident of {{casualtiesNumber$|async}} casualties
   </mat-card-title>
-  <button mat-icon-button routerLink="map">
+  <button mat-icon-button (click)="setChild('map')">
     <mat-icon class="mat-48">map</mat-icon>
   </button>
-  <button mat-icon-button routerLink="treatment">
+  <button mat-icon-button (click)="setChild('treatment')">
     <mat-icon class="mat-48">person</mat-icon>
   </button>
   <mat-card-content>
-    <router-outlet></router-outlet>
+    <ng-container [ngSwitch]="child">
+      <app-map *ngSwitchCase="'map'" [casualties]="casualties$|async" [cords]="incidentLocation"></app-map>
+      <app-treatment-dialog *ngSwitchCase="'treatment'" [incidentID]="currentIncidentID"></app-treatment-dialog>
+    </ng-container>
   </mat-card-content>
 </mat-card>

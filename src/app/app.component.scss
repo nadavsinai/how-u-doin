@@ -2,7 +2,7 @@
   padding: 20px;
 }
 
-::ng-deep router-outlet + * {
+::ng-deep router-outlet.rootRouterHost + * {
   min-height: 80vh;
   display: flex;
   justify-content: center;

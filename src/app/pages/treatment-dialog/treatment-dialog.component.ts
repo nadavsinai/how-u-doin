@@ -1,10 +1,9 @@
 import {CasualtiesService, GeolocationService} from '@shared/services';
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {debounceTime, switchMap} from 'rxjs/operators';
-import {Casualty, Severity, Status} from '@shared/interfaces';
+import {Severity, Status} from '@shared/interfaces';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-treatment-dialog',
@@ -24,8 +23,9 @@ export class TreatmentDialogComponent implements OnInit {
   statuses = Object.values(Status);
   severities = Object.values(Severity);
   private subscriptions: Subscription[] = [];
+  @Input() incidentID: string;
 
-  constructor(private casualtySvc: CasualtiesService, private geoLocationService: GeolocationService, private activatedRoute: ActivatedRoute) {
+  constructor(private casualtySvc: CasualtiesService, private geoLocationService: GeolocationService) {
   }
 
   ngOnDestory() {
@@ -34,8 +34,7 @@ export class TreatmentDialogComponent implements OnInit {
   }
 
   readCasualtyData(id: string) {
-    //todo: replace with activated route incident ID
-    return this.casualtySvc.getCasualty(this.activatedRoute.params['incidentID'], id).get();
+    return this.casualtySvc.getCasualty(this.incidentID, id).get();
   }
 
   ngOnInit() {
