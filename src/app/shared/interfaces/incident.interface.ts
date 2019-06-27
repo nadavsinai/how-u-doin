@@ -1,4 +1,4 @@
-import {firestore} from 'firebase';
+import {firestore} from 'firebase/app';
 
 export type Location = firestore.GeoPoint;
 export type TimeStamp = firestore.Timestamp;
@@ -12,15 +12,17 @@ export enum Severity {
 
 
 export interface Incident {
+  id?: string;
   location: Location;
-  reportingTime: TimeStamp;
+  timestamp: TimeStamp;
   reportedBy: string // uid;
-  casualties?: Casualty[];
+  displayName?: string;
+  casualties?: Casualty[]
 }
 
 export interface Casualty {
-  id: string;
-  treatments: Treatment[];
+  id?: string;
+  treatments?: Treatment[]
 }
 
 export enum Status {
@@ -31,6 +33,7 @@ export enum Status {
 }
 
 export interface Treatment {
+  id?: string;
   location: firebase.firestore.GeoPoint;
   timestamp: firebase.firestore.Timestamp;
   severity: Severity;

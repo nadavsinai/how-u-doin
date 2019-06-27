@@ -14,7 +14,6 @@ import {
   MatNativeDateModule,
   MatSidenavModule,
   MatSnackBarModule,
-  MatTabsModule,
   MatToolbarModule,
   MatTableModule
 } from '@angular/material';
@@ -34,16 +33,18 @@ import {firebaseKeys} from './firebase.config';
 import {HomeComponent} from './pages/home/home.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {PageNotFoundComponent} from './pages/not-found/not-found.component';
-import { AngularFirestoreModule} from '@angular/fire/firestore';
-import { AdminComponent } from './pages/admin/admin.component';
-import { MapComponent } from './pages/admin/map/map.component';
-import { TableComponent } from './pages/admin/table/table.component';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AdminComponent} from './pages/admin/admin.component';
+import {MapComponent} from './pages/admin/map/map.component';
+import {TableComponent} from './pages/admin/table/table.component';
 import {IncidentsService} from '@shared/services/incidents.service';
 import {GeolocationService} from '@shared/services/geolocation.service';
 
-import { AgmCoreModule } from '@agm/core';
-import { TreatmentDialogComponent } from './pages/treatment-dialog/treatment-dialog.component';
-import { CasualtiesService } from './shared/services/casualties.service';
+import {AgmCoreModule} from '@agm/core';
+import {TreatmentDialogComponent} from './pages/treatment-dialog/treatment-dialog.component';
+import {CasualtiesService} from './shared/services/casualties.service';
+import {AgmCoreModule} from '@agm/core';
+import {IncidentSelectionComponent} from './pages/incident-selection/incident-selection.component';
 
 // Components
 
@@ -59,14 +60,17 @@ import { CasualtiesService } from './shared/services/casualties.service';
     MapComponent,
     TableComponent,
     TreatmentDialogComponent,
+    IncidentSelectionComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
     MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
-    MatCardModule, MatTabsModule, MatIconModule, MatTableModule, MatSelectModule,
-    FormsModule,
+    MatCardModule, MatIconModule, MatTableModule, MatSelectModule,
+    FormsModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
+    MatCardModule, MatIconModule, MatToolbarModule,
+    FormsModule, MatSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -88,9 +92,7 @@ import { CasualtiesService } from './shared/services/casualties.service';
     AuthService,
     CasualtiesService,
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

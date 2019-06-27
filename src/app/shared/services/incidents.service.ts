@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore, CollectionReference, Query} from '@angular/fire/firestore';
 import {Incident} from '@shared/interfaces';
 import {firestore} from 'firebase/app';
 import {GeolocationService,} from '@shared/services/geolocation.service';
@@ -10,9 +10,11 @@ import {UserService} from '@shared/services/user.service';
 })
 export class IncidentsService {
   public allIncidents$ = this.getCollection().valueChanges();
+  private static readonly time7daysAgo = new Date((Date.now() - 604800000));
+  public recentIncidents$ = this.getCollection((ref) => ref.where('timestamp', '>', IncidentsService.time7daysAgo)).valueChanges();
 
-  private getCollection() {
-    return this.db.collection('/incidents');
+  private getCollection(query?: (ref: CollectionReference) => Query) {
+    return this.db.collection<Incident>('/incidents', query);
   }
 
   constructor(private db: AngularFirestore, private geoLocation: GeolocationService, private userService: UserService) {
@@ -24,8 +26,7 @@ export class IncidentsService {
     const incident: Incident = {
       location: new firestore.GeoPoint(currentLocation.coords.latitude, currentLocation.coords.longitude),
       reportedBy: this.userService.currentUser.uid, // uid;
-      reportingTime: firestore.Timestamp.fromMillis(currentLocation.timestamp),
-      casualties: []
+      timestamp: firestore.Timestamp.fromMillis(currentLocation.timestamp),
     };
     return this.getCollection().add(incident);
   }
