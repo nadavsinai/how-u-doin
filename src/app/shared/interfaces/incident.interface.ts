@@ -16,7 +16,6 @@ export interface Incident {
   timestamp: TimeStamp;
   reportedBy: string // uid;
   displayName?: string;
-  casualties?: Casualty[]
 }
 
 export interface Casualty {

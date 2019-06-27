@@ -7,12 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 // Components
 import { ProfileComponent } from './profile.component';
-import { ProfileSettingsComponent } from './profile-settings.component';
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    ProfileSettingsComponent
   ],
   imports: [
     CommonModule,
@@ -22,10 +20,8 @@ import { ProfileSettingsComponent } from './profile-settings.component';
   ],
   exports: [
     ProfileComponent,
-    ProfileSettingsComponent
   ],
   schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class ProfileModule {

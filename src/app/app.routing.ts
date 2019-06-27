@@ -1,18 +1,13 @@
 // Modules 3rd party
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-
 // 404 page
 import {PageNotFoundComponent} from './pages/not-found/not-found.component';
-
 // Pages
 import {HomeComponent} from './pages/home/home.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {AuthComponent} from './pages/auth/auth.component';
 import {ProfileComponent} from './pages/profile/profile.component';
-import {ProfileSettingsComponent} from './pages/profile/profile-settings.component';
-
-
 // Protected
 import {AuthGuardService} from '@shared';
 import {AdminComponent} from 'src/app/pages/admin/admin.component';
@@ -29,7 +24,7 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'auth', component: AuthComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuardService]},
   {path: 'incident', component: IncidentSelectionComponent, canActivate: [AuthGuardService]},
   {
     path: 'incident/:incidentID', canActivate: [AuthGuardService], component: IncidentManagementComponent, children: [
@@ -40,7 +35,6 @@ const appRoutes: Routes = [
   // Protected pages
   // { path: 'profile/:uid/:name', component: ProfileComponent, canActivate: [AuthGuardService] },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
-  {path: 'profile-settings', component: ProfileSettingsComponent, canActivate: [AuthGuardService]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

@@ -15,6 +15,7 @@ export class AuthService {
   public onSuccess = async () => {
     try {
       this.token = await this.getIdToken();
+      sessionStorage.setItem("loggedInToken",this.token);
     } catch (e) {
       console.log(e);
     }
@@ -23,6 +24,7 @@ export class AuthService {
 
   public async logout(): Promise<boolean> {
     this.token = null;
+    sessionStorage.clear();
     await this.auth.auth.signOut();
     return this.router.navigate(['/']);
   }
@@ -32,6 +34,6 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return this.token != null;
+    return sessionStorage.getItem("loggedInToken") !=null;
   }
 }

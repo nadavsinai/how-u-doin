@@ -9,7 +9,7 @@ import {UserService} from '@shared/services/user.service';
   providedIn: 'root'
 })
 export class IncidentsService {
-  public allIncidents$ = this.getCollection().valueChanges({idField:'id'});
+  public allIncidents$ = this.getCollection().valueChanges({idField: 'id'});
   private static readonly time7daysAgo = new Date((Date.now() - 604800000));
   public recentIncidents$ = this.getCollection((ref) => ref.where('timestamp', '>', IncidentsService.time7daysAgo)).valueChanges();
 
@@ -33,5 +33,9 @@ export class IncidentsService {
 
   getIncident$(id: string) {
     return this.getCollection().doc<Incident>(id).valueChanges();
+  }
+
+  printLocation(incident: Incident) {
+    return `[${incident.location.latitude}, ${incident.location.longitude}]`;
   }
 }

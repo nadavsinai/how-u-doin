@@ -43,7 +43,6 @@
 <mat-toolbar color="primary">
 
 
-
   <!-- Sidenav activate -->
   <div class="sidenav-content">
     <button type="button" mat-icon-button (click)="sidenav.toggle()">
@@ -60,8 +59,6 @@
     <button type="button" routerLink="/auth" mat-icon-button>
       <mat-icon>lock_open</mat-icon>
     </button>
-
-    <button type="button" routerLink='/admin'>Admin</button>
   </div>
 
   <ng-template #loggedin>
@@ -84,13 +81,9 @@
         <span>{{item.title}}</span>
       </a>
 
-      <a
-        mat-menu-item
-        routerLink="/profile-settings"
-        [queryParams]="{profile: '1'}"
-        fragment="editProfile">
+      <a mat-menu-item routerLink="/admin">
         <mat-icon class="settings">settings</mat-icon>
-        <span>Settings</span>
+        <span>Admin</span>
       </a>
 
       <a mat-menu-item (click)="onLogout()">

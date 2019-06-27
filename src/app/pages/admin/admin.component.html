@@ -1,4 +1,12 @@
-<app-map [cords]="cords" [casualties]="casualties">
+<ng-container *ngIf="incidentsService.allIncidents$|async as allIncidents">
 
-</app-map>
-<app-table></app-table>
+  <mat-select [formControl]="incidentControl" [value]="currentIncident" placeholder="Select Incident">
+    <mat-option *ngFor="let incident of allIncidents" [value]="incident">
+      {{incidentsService.printLocation(incident)}} {{incident.timestamp.toDate().toDateString()}} {{incident.displayName ? " - (" + incident.displayName + ")" : ''}}
+    </mat-option>
+  </mat-select>
+  <ng-container *ngIf="casualties$|async as casualties">
+    <app-map [cords]="currentIncident.location" [casualties]="casualties"></app-map>
+    <app-table></app-table>
+  </ng-container>
+</ng-container>
