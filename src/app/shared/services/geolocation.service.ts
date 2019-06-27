@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {finalize} from 'rxjs/operators';
+import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class GeolocationService {
   }
 
   getLocation(): Promise<Position> {
-    return new Promise((resolve, reject) => {
+    return Promise.race([new Promise((resolve, reject) => {
       window.navigator.geolocation.getCurrentPosition((position: Position) => {
         this.currentLocation = position;
         resolve(this.currentLocation);
       }, reject);
-    });
+    }), this.locationSubject.asObservable().pipe(delay(1000)).toPromise()]);
 
   }
 
