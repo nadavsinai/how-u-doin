@@ -60,6 +60,7 @@ import {IncidentManagementComponent} from './pages/incident-management/incident-
     TreatmentDialogComponent,
     IncidentSelectionComponent,
     IncidentManagementComponent,
+
   ],
   imports: [
     BrowserModule,

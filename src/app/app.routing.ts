@@ -18,7 +18,8 @@ import {AuthGuardService} from '@shared';
 import {AdminComponent} from 'src/app/pages/admin/admin.component';
 import {IncidentSelectionComponent} from 'src/app/pages/incident-selection/incident-selection.component';
 import {TreatmentDialogComponent} from './pages/treatment-dialog/treatment-dialog.component';
-import {IncidentManagementComponent} from 'src/app/pages/incident-management/incident-management.component';
+import {IncidentManagementComponent} from './pages/incident-management/incident-management.component';
+import {MapComponent} from 'src/app/pages/admin/map/map.component';
 
 // Routing
 const appRoutes: Routes = [
@@ -29,14 +30,11 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'admin', component: AdminComponent},
-
+  {path: 'incident', component: IncidentSelectionComponent},
   {
-    path: 'incident', component: IncidentSelectionComponent, children: [
-      {
-        path: ':incidentID', component: IncidentManagementComponent, children: [
-          {path: 'treatment', component: TreatmentDialogComponent},
-        ]
-      }
+    path: 'incident/:incidentID', component: IncidentManagementComponent, children: [
+      {path: 'treatment', component: TreatmentDialogComponent},
+      {path: 'map', component: MapComponent}
     ]
   },
   // Protected pages

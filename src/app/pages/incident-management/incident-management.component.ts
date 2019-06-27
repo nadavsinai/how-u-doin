@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {defer, Observable} from 'rxjs';
 import {CasualtiesService} from '@shared/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
@@ -10,15 +10,15 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./incident-management.component.css']
 })
 export class IncidentManagementComponent implements OnInit {
-  casualtiesNumber$: Observable<number> = this.casualtiesSvc.getAllCasualties(this.currentIncidentID)
+  private currentIncidentID: string;
+  casualtiesNumber$: Observable<number> = defer(() => this.casualtiesSvc.getAllCasualties(this.currentIncidentID)
     .pipe(map((casualties) => {
       return casualties.length;
-    }));
+    })));
 
 
   constructor(
     private casualtiesSvc: CasualtiesService,
-    private currentIncidentID: string,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {

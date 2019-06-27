@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {finalize} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +8,7 @@ import {Injectable} from '@angular/core';
 export class GeolocationService {
   currentLocation: Position;
   private watcher: number;
+  locationSubject = new BehaviorSubject<Position>(this.currentLocation);
 
   constructor() {
   }
@@ -20,12 +23,14 @@ export class GeolocationService {
 
   }
 
-  watchPosition() {
+  watchPosition(): Observable<Position> {
     if (!this.watcher) {
       this.watcher = window.navigator.geolocation.watchPosition((position: Position) => {
         this.currentLocation = position;
+        this.locationSubject.next(position);
       }, this.geoError);
     }
+    return this.locationSubject.asObservable().pipe(finalize(() => this.unwatchPosition()));
   }
 
   private geoError(error) {

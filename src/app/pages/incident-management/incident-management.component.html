@@ -2,5 +2,13 @@
   <mat-card-title>
     Incident of {{casualtiesNumber$|async}} casualties
   </mat-card-title>
-  <mat-card-content></mat-card-content>
+  <button mat-icon-button routerLink="map">
+    <mat-icon class="mat-48">map</mat-icon>
+  </button>
+  <button mat-icon-button routerLink="treatment">
+    <mat-icon class="mat-48">person</mat-icon>
+  </button>
+  <mat-card-content>
+    <router-outlet></router-outlet>
+  </mat-card-content>
 </mat-card>
