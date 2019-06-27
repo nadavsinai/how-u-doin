@@ -18,7 +18,7 @@ export class CasualtiesService {
   }
 
   public getAllCasualties(incident: string) {
-    return this.getCollection(incident).valueChanges();
+    return this.getCollection(incident).valueChanges({idField: 'id'});
   }
 
   public getUserCasualties(incident: string) {

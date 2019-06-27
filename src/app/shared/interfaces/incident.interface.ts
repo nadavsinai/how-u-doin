@@ -14,7 +14,7 @@ export enum Severity {
 export interface Incident {
   location: Location;
   timestamp: TimeStamp;
-  reportedBy: string // uid;
+  reportedBy: string; // uid;
   displayName?: string;
 }
 
