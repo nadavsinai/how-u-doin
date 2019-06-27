@@ -1,9 +1,8 @@
 // Modules 3rd party
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatSelectModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -12,6 +11,7 @@ import {
   MatInputModule,
   MatMenuModule,
   MatNativeDateModule,
+  MatSelectModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatToolbarModule,
@@ -38,12 +38,11 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AdminComponent} from './pages/admin/admin.component';
 import {MapComponent} from './pages/admin/map/map.component';
 import {TableComponent} from './pages/admin/table/table.component';
-import {IncidentsService} from '@shared/services/incidents.service';
-import {GeolocationService} from '@shared/services/geolocation.service';
+import {CasualtiesService, GeolocationService, IncidentsService} from '@shared/services';
 import {TreatmentDialogComponent} from './pages/treatment-dialog/treatment-dialog.component';
-import {CasualtiesService} from './shared/services/casualties.service';
 import {AgmCoreModule} from '@agm/core';
 import {IncidentSelectionComponent} from './pages/incident-selection/incident-selection.component';
+import {IncidentManagementComponent} from './pages/incident-management/incident-management.component';
 
 // Components
 
@@ -60,6 +59,7 @@ import {IncidentSelectionComponent} from './pages/incident-selection/incident-se
     TableComponent,
     TreatmentDialogComponent,
     IncidentSelectionComponent,
+    IncidentManagementComponent,
   ],
   imports: [
     BrowserModule,

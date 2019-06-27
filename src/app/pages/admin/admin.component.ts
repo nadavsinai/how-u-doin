@@ -11,12 +11,11 @@ export class AdminComponent implements OnInit {
   cords = new firestore.GeoPoint(34, 32);
 
   casualties: Casualty[] = [{
-    id: 'ss',
     treatments: [{
       location: new firestore.GeoPoint(34.01, 32.01),
       timestamp: firestore.Timestamp.now(),
       severity: Severity.fatal,
-      reportedBy: 'ss',
+      reportedBy: 'Sgt. Pepper',
       treatmentNotes: [],
       status: Status.field
     }]

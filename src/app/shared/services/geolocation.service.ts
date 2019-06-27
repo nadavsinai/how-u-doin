@@ -8,7 +8,6 @@ export class GeolocationService {
   private watcher: number;
 
   constructor() {
-    this.getLocation();
   }
 
   getLocation(): Promise<Position> {
@@ -22,9 +21,11 @@ export class GeolocationService {
   }
 
   watchPosition() {
-    this.watcher = window.navigator.geolocation.watchPosition((position: Position) => {
-      this.currentLocation = position;
-    }, this.geoError);
+    if (!this.watcher) {
+      this.watcher = window.navigator.geolocation.watchPosition((position: Position) => {
+        this.currentLocation = position;
+      }, this.geoError);
+    }
   }
 
   private geoError(error) {

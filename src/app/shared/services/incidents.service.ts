@@ -9,7 +9,7 @@ import {UserService} from '@shared/services/user.service';
   providedIn: 'root'
 })
 export class IncidentsService {
-  public allIncidents$ = this.getCollection().valueChanges();
+  public allIncidents$ = this.getCollection().valueChanges({idField:'id'});
   private static readonly time7daysAgo = new Date((Date.now() - 604800000));
   public recentIncidents$ = this.getCollection((ref) => ref.where('timestamp', '>', IncidentsService.time7daysAgo)).valueChanges();
 

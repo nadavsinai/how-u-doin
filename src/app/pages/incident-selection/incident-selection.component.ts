@@ -27,6 +27,6 @@ export class IncidentSelectionComponent implements OnInit {
   }
 
   selectRecentIncident($event: MatSelectChange) {
-    console.log($event);
+    this.router.navigate([`/incident`, $event.value.id]);
   }
 }

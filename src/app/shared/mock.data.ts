@@ -3,7 +3,6 @@ import {firestore} from 'firebase/app';
 
 export const MockTreatments: Treatment[] = [
   {
-    id: '',
     status: Status.field,
     reportedBy: 'someone',
     severity: Severity.high,
@@ -12,7 +11,6 @@ export const MockTreatments: Treatment[] = [
     location: new firestore.GeoPoint(40, 30)
   },
   {
-    id: '',
     status: Status.field,
     reportedBy: 'someone',
     severity: Severity.fatal,
@@ -21,15 +19,16 @@ export const MockTreatments: Treatment[] = [
     location: new firestore.GeoPoint(40, 30)
   }
 ];
-const MockCasualties: Casualty[] = [{id: '111', treatments: MockTreatments}];
+const MockCasualties: Casualty[] = [{
+  treatments: MockTreatments
+}
+];
 
 export const mockIncident: Incident = {
-  id: 'a',
   location: new firestore.GeoPoint(40, 30),
   timestamp: firestore.Timestamp.now(),
   reportedBy: 'someone',
   displayName: 'tsunami',
-  casualties: MockCasualties
 };
 
 
