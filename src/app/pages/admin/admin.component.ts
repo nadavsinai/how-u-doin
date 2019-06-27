@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   private casualties$: Observable<Casualty[]>;
 
 
-  constructor(private incidentsService: IncidentsService, private casualtySvc: CasualtiesService) {
+  constructor(public incidentsService: IncidentsService, private casualtySvc: CasualtiesService) {
   }
 
   ngOnInit() {

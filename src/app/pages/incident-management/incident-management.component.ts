@@ -20,7 +20,7 @@ export class IncidentManagementComponent implements OnInit {
       return casualties.length;
     })));
   child: 'map' | 'treatment' = 'treatment';
-  private currentIncident$: Observable<Incident>;
+  currentIncident$: Observable<Incident>;
   casualties$: Observable<CasualtyWithID[]>;
   myCasualties$: Observable<CasualtyWithID[]>;
 
