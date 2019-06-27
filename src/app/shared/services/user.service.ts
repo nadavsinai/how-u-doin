@@ -8,7 +8,7 @@ export class UserService {
   currentUser: firebase.User | undefined;
 
   constructor(private alertService: AlertService, private db: AngularFirestore, private authService: AuthService) {
-    this.authService.auth.user.subscribe((user) => this.currentUser = user);
+    this.authService.auth.authState.subscribe((user) => this.currentUser = user);
   }
 
   public updateUserInfo(uid: string, displayName: string, bio: string): Promise<void> {
