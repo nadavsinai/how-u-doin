@@ -7,7 +7,6 @@ export interface TableElement {
   id: string;
   severity: string;
   status: string;
- // treatments: string;
   treatments: Treatment[];
 }
 
@@ -37,7 +36,7 @@ export class TableComponent implements OnInit {
         id: casualty.id,
         status: lastTreatment.status,
         severity: lastTreatment.severity,
-        treatments: casualty.treatments[casualty.treatments.length-1].treatmentNotes,
+        treatmentNotes: casualty.treatments[casualty.treatments.length-1].treatmentNotes,
       }
     });
     console.log(this.ELEMENT_DATA);
