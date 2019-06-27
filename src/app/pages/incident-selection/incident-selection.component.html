@@ -1,17 +1,21 @@
 <mat-card class="center">
   <mat-card-content>
-    <button mat-raised-button color="red">Report New Incident!
+    <button mat-raised-button color="red" class="newBtn" (click)="newIncident()">Report New Incident!
       <mat-icon color="warn">warning</mat-icon>
     </button>
     <br/>
     <ng-container *ngIf="currentIncidents$|async as currentIncidents">
       <ng-container *ngIf="currentIncidents.length > 0">
-        <mat-select>
+        <br/>
+        <mat-form-field class="center">
           <mat-label>Select Recent Incident</mat-label>
-          <mat-option *ngFor="let incident of currentIncidents" [value]="incident.id">
-            {{incident.reportingTime.toMillis()|date:'d m yyyy'}}
-          </mat-option>
-        </mat-select>
+          <mat-select (selectionChange)="selectRecentIncident($event)">
+            <mat-option *ngFor="let incident of currentIncidents" [value]="incident">
+              {{incident.timestamp.toMillis()|date:'d m yyyy'}}
+              {{(incident.displayName) ? '(' + incident.displayName + ')' : ''}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </ng-container>
     </ng-container>
   </mat-card-content>

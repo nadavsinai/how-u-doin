@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IncidentsService} from '@shared/services';
+import {MatSelectChange} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-incident-selection',
@@ -11,11 +13,20 @@ export class IncidentSelectionComponent implements OnInit {
   // currentIncidents$ = this.incidentsSvs.recentIncidents$; //todo make this query
   currentIncidents$ = this.incidentsSvs.allIncidents$;
 
-  constructor(private incidentsSvs: IncidentsService) {
+
+  constructor(private incidentsSvs: IncidentsService, private router: Router) {
   }
 
   ngOnInit() {
 
   }
 
+  async newIncident() {
+    const incident = await this.incidentsSvs.addIncident();
+    this.router.navigate([`/incident`, incident.id]);
+  }
+
+  selectRecentIncident($event: MatSelectChange) {
+    console.log($event);
+  }
 }

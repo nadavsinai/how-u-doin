@@ -59,17 +59,22 @@ export class CasualtiesService {
           map(treatments => ({...casualty, treatments: treatments}))
         );
       }));
+  }
 
-    public async getCasualty(incidentID: string, id: string): Promise<Casualty> {
-    let casualty: Casualty = {id: "", treatments: []};
+  public async getCasualty2(incidentID: string, id: string): Promise<Casualty> {
+    let casualty: Casualty = {id: '', treatments: []};
     const casualtyQry = this.getCollection(incidentID).doc<Casualty>(id);
     const casualtyDoc = await casualtyQry.get().toPromise();
-    if (!casualtyDoc.exists) return casualty;
+    if (!casualtyDoc.exists) {
+      return casualty;
+    }
     casualty.id = casualtyDoc.id;
     const treatments = casualtyQry.collection('treatments');
     const treatmentsDoc = await treatments.get().toPromise();
     const qry = await treatmentsDoc.query.orderBy('timestamp', 'desc').get();
-    qry.forEach((treatment) => {casualty.treatments.push(treatment.data() as Treatment)});
+    qry.forEach((treatment) => {
+      casualty.treatments.push(treatment.data() as Treatment);
+    });
     return casualty;
   }
 }

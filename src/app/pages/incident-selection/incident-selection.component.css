@@ -1,4 +1,25 @@
 .center {
   display: flex;
-  justify-content:center;
+  justify-content: center;
+}
+
+mat-card-content {
+  padding: 20px
+}
+
+.newBtn {
+  padding: 20px;
+  font-size: 2em;
+
+}
+
+mat-icon[color="warn"] {
+  font-size: 48px;
+  top: 24px;
+  position: relative;
+  padding: 12px;
+  line-height: 0;
+  left: -24px;
+  display: block;
+  margin: auto;
 }

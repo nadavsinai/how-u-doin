@@ -39,8 +39,6 @@ import {MapComponent} from './pages/admin/map/map.component';
 import {TableComponent} from './pages/admin/table/table.component';
 import {IncidentsService} from '@shared/services/incidents.service';
 import {GeolocationService} from '@shared/services/geolocation.service';
-
-import {AgmCoreModule} from '@agm/core';
 import {TreatmentDialogComponent} from './pages/treatment-dialog/treatment-dialog.component';
 import {CasualtiesService} from './shared/services/casualties.service';
 import {AgmCoreModule} from '@agm/core';
