@@ -36,6 +36,7 @@ export class TableComponent implements OnInit {
         id: casualty.id,
         status: lastTreatment.status,
         severity: lastTreatment.severity,
+        treatments:casualty.treatments,
         treatmentNotes: casualty.treatments[casualty.treatments.length-1].treatmentNotes,
       }
     });
