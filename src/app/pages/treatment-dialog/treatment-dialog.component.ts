@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {Severity, Status} from '@shared/interfaces';
 import {Subscription} from 'rxjs';
+import { Treatment } from '../../shared/interfaces/incident.interface';
 
 @Component({
   selector: 'app-treatment-dialog',
@@ -35,6 +36,15 @@ export class TreatmentDialogComponent implements OnInit {
 
   readCasualtyData(id: string) {
     return this.casualtySvc.getCasualty(this.incidentID, id).get();
+  }
+
+  addTreatment() {
+    let newTreatment: Treatment = {
+      severity: Severity[this.formGroup.value['severity']],
+      status: Status[this.formGroup.value['statusss']],
+      treatmentNotes: this.formGroup.value['notes'],
+    };
+    console.log(newTreatment);
   }
 
   ngOnInit() {
