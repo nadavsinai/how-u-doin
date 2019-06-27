@@ -18,6 +18,7 @@ import {
   MatTableModule,
   MatRadioModule,
   MatButtonToggleModule,
+  MatListModule,
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -74,7 +75,7 @@ import {CanvasComponent} from 'src/app/components/canvas-body.component';
     FormsModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
     MatCardModule, MatIconModule, MatToolbarModule,
     FormsModule, MatSelectModule,
-    MatRadioModule, MatButtonToggleModule,
+    MatRadioModule, MatButtonToggleModule, MatListModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
