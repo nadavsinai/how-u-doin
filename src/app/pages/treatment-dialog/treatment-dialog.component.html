@@ -46,11 +46,7 @@
       <tr>
           <td colspan="2" class="past">
             <label>Previous Treatments:</label>
-            <mat-list dense formControlName="pastTreats">
-                    <mat-list-item> Pepper </mat-list-item>
-                    <mat-list-item> Salt </mat-list-item>
-                    <mat-list-item> Paprika </mat-list-item>
-            </mat-list>
+            <app-treatment-table [treatments]=""></app-treatment-table>
         </td>
       </tr>
       <tr><td colspan="2">
