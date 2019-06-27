@@ -1,39 +1,52 @@
 .container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .container > * {
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  .container .id {
-      width: 100%;
-  }
+.container > * {
+  width: 100%;
+}
 
-  .container .severity {
-    width: 100%;
+.container .id {
+  width: 100%;
+}
+
+.container .severity {
+  width: 100%;
 }
 
 .container .status {
-    width: 100%;
+  width: 100%;
 }
 
 .container .time {
-    width: 90%;
+  width: 90%;
 }
 
 .container .location {
-    width: 100%;
+  width: 100%;
 }
+
 .container .notes {
-    width: 100%;
+  width: 100%;
 }
 
 .container .past {
-    width: 100%;
+  width: 100%;
 }
 
 .container .addButton {
-    text-align: center;
+  text-align: center;
+}
+
+.treat-case table {
+  width: 100%;
+}
+.center {
+  text-align:center;
+}
+.addButton button {
+  width: 100%;
+  margin: 10px;
+  font-size: 24px;
 }

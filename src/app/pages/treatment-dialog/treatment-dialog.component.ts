@@ -2,9 +2,8 @@ import {CasualtiesService, GeolocationService} from '@shared/services';
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {debounceTime, switchMap} from 'rxjs/operators';
-import {Severity, Status} from '@shared/interfaces';
+import {Severity, Status, Treatment} from '@shared/interfaces';
 import {Subscription} from 'rxjs';
-import { Treatment } from '../../shared/interfaces/incident.interface';
 
 @Component({
   selector: 'app-treatment-dialog',

@@ -44,11 +44,13 @@ import {TreatmentDialogComponent} from './pages/treatment-dialog/treatment-dialo
 import {AgmCoreModule} from '@agm/core';
 import {IncidentSelectionComponent} from './pages/incident-selection/incident-selection.component';
 import {IncidentManagementComponent} from './pages/incident-management/incident-management.component';
+import {CanvasComponent} from 'src/app/components/canvas-body.component';
 
 // Components
 
 @NgModule({
   declarations: [
+    CanvasComponent,
     AppComponent,
     HomeComponent,
     ContactComponent,
