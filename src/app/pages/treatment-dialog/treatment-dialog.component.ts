@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {debounceTime, switchMap} from 'rxjs/operators';
 import {Severity, Status} from '@shared/interfaces';
 import {Subscription} from 'rxjs';
+import { Treatment } from '../../shared/interfaces/incident.interface';
 
 @Component({
   selector: 'app-treatment-dialog',
@@ -18,6 +19,7 @@ export class TreatmentDialogComponent implements OnInit {
     severity: new FormControl(),
     statusss: new FormControl(),
     notes: new FormControl(),
+    pastTreats: new FormControl(),
   });
 
   statuses = Object.values(Status);
@@ -34,7 +36,17 @@ export class TreatmentDialogComponent implements OnInit {
   }
 
   readCasualtyData(id: string) {
+    if (!id) id="-1";
     return this.casualtySvc.getCasualty(this.incidentID, id).get();
+  }
+
+  addTreatment() {
+    let newTreatment: Partial<Treatment> = {
+      severity: this.formGroup.value['severity'] as Severity,
+      status: this.formGroup.value['statusss'] as Status,
+      treatmentNotes: this.formGroup.value['notes'],      
+    };
+    this.casualtySvc.addTreatment(this.incidentID, this.formGroup.value['id'], newTreatment as Treatment);
   }
 
   ngOnInit() {
@@ -46,7 +58,7 @@ export class TreatmentDialogComponent implements OnInit {
         if (casualtyDoc.exists && casualtyDoc.data().treatments.length > 0) {
           const treatments = casualtyDoc.data().treatments;
           const lastTreatment = treatments[treatments.length - 1];
-          this.formGroup.patchValue({statusss: lastTreatment.status, severity: lastTreatment.severity});
+          this.formGroup.patchValue({statusss: lastTreatment.status, severity: lastTreatment.severity, notes: lastTreatment.treatmentNotes});
         }
       }));
     this.subscriptions.push(this.geoLocationService.watchPosition()
