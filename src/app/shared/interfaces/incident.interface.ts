@@ -22,6 +22,8 @@ export interface Casualty {
   treatments: Treatment[]
 }
 
+export type CasualityWithID = Casualty & {id:string};
+
 export enum Status {
   field = 'field',
   inTransport = 'inTransport',

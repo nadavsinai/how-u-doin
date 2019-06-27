@@ -1,6 +1,16 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Time} from '@angular/common';
-import {Incident, Status, Severity, Casualty} from '../../../shared/interfaces/incident.interface';
+import {Incident, Status, Severity, CasualityWithID, Treatment} from '../../../shared/interfaces/incident.interface';
+import { DataSource } from '@angular/cdk/table';
+
+export interface TableElement {
+  id: string;
+  severity: string;
+  status: string;
+ // treatments: string;
+  treatments: Treatment[];
+}
+
 
 @Component({
   selector: 'app-table',
@@ -10,8 +20,9 @@ import {Incident, Status, Severity, Casualty} from '../../../shared/interfaces/i
 
 
 export class TableComponent implements OnInit {
-  @Input() casualties: Casualty[];
+  @Input() casualties: CasualityWithID[];
   displayedColumns: string[] = ['id', 'status', 'severity', 'treatmentNotes']; //nextTreatmentIn
+  ELEMENT_DATA: TableElement[];
 
   constructor() {
   }
@@ -19,8 +30,19 @@ export class TableComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges(){
-    console.log(this.casualties);
+  ngOnChanges() {
+    this.ELEMENT_DATA = this.casualties.map((casualty) => {
+      const lastTreatment = casualty.treatments[casualty.treatments.length - 1];
+      return {
+        id: casualty.id,
+        status: lastTreatment.status,
+        severity: lastTreatment.severity,
+        treatments: casualty.treatments[casualty.treatments.length-1].treatmentNotes,
+      }
+    });
+    console.log(this.ELEMENT_DATA);
+    this.casualties = this.ELEMENT_DATA;
+
   }
 
 }
