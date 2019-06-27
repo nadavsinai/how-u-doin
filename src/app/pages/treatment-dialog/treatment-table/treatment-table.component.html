@@ -1,8 +1,8 @@
-<table mat-table [dataSource]="casualties" class="mat-elevation-z8">
+<table mat-table [dataSource]="treatments" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="time">
+    <ng-container matColumnDef="timestamp">
       <th mat-header-cell *matHeaderCellDef> Time</th>
-      <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
+      <td mat-cell *matCellDef="let element"> {{printTimeStamp(element.timestamp)}} </td>
     </ng-container>
   
     <ng-container matColumnDef="status">
@@ -28,4 +28,3 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  

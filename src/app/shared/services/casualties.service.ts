@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, CollectionReference, Query} from '@angular/fire/firestore';
-import {Casualty, Treatment} from '@shared/interfaces';
+import {Casualty, TimeStamp, Treatment} from '@shared/interfaces';
 import {firestore} from 'firebase/app';
 import {GeolocationService} from '@shared/services/geolocation.service';
 import {UserService} from '@shared/services/user.service';
@@ -59,6 +59,10 @@ export class CasualtiesService {
 
   getCasualty(incidentID: string, id: string) {
     return this.getCollection(incidentID).doc<Casualty>(id);
+  }
+
+  static printTimeStamp(time:TimeStamp){
+    return time.toDate().toLocaleString()
   }
 
 

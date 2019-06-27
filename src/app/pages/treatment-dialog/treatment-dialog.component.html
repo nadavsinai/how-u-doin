@@ -43,22 +43,23 @@
           </mat-form-field>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="treatments.length">
           <td colspan="2" class="past">
             <label>Previous Treatments:</label>
-            <app-treatment-table [treatments]=""></app-treatment-table>
+            <app-treatment-table [treatments]="treatments"></app-treatment-table>
         </td>
       </tr>
-      <tr><td colspan="2">
-            <br/>
-            <img src="/assets/img/human.jpg" height="305" width="305">
-        </td></tr>
-      <tr><td colspan="2" class="addButton">
       <tr>
-          <td colspan="2" class="addButton">
-            <button mat-raised-button color="warn" (click)="addTreatment()">Add</button>
-          </td>
-     </tr>
+        <td colspan="2" class="center">
+          <br/>
+          <app-canvas></app-canvas>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="addButton">
+          <button mat-raised-button color="warn" (click)="addTreatment()">Add</button>
+        </td>
+      </tr>
     </table>
   </form>
 </div>
