@@ -32,6 +32,6 @@ export class IncidentsService {
   }
 
   getIncident$(id: string) {
-    return this.getCollection().doc(id).valueChanges();
+    return this.getCollection().doc<Incident>(id).valueChanges();
   }
 }

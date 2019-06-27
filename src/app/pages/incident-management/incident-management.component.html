@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="currentIncident$|async as currentIncident">
   <mat-card-title>
     Incident of {{casualtiesNumber$|async}} casualties
   </mat-card-title>
@@ -10,7 +10,7 @@
   </button>
   <mat-card-content>
     <ng-container [ngSwitch]="child">
-      <app-map *ngSwitchCase="'map'" [casualties]="casualties$|async" [cords]="incidentLocation"></app-map>
+      <app-map *ngSwitchCase="'map'" [casualties]="casualties$|async" [cords]="currentIncident.location"></app-map>
       <app-treatment-dialog *ngSwitchCase="'treatment'" [incidentID]="currentIncidentID"></app-treatment-dialog>
     </ng-container>
   </mat-card-content>

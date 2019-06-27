@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {defer, Observable} from 'rxjs';
-import {CasualtiesService} from '@shared/services';
+import {CasualtiesService, IncidentsService} from '@shared/services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import {firestore} from 'firebase/app' ;
+import {Casualty, Incident} from '@shared/interfaces';
 
 
 @Component({
@@ -13,21 +14,25 @@ import {firestore} from 'firebase/app' ;
 })
 export class IncidentManagementComponent implements OnInit {
   currentIncidentID: string;
+
   casualtiesNumber$: Observable<number> = defer(() => this.casualtiesSvc.getAllCasualties(this.currentIncidentID)
     .pipe(map((casualties) => {
       return casualties.length;
     })));
   child: 'map' | 'treatment' = 'treatment';
-  //todo : get from incident
-  incidentLocation: firestore.GeoPoint  = new firestore.GeoPoint(34, 34);
+  private currentIncident$: Observable<Incident>;
+  casualties$: Observable<Casualty[]> = this.casualtiesSvc.getAllCasualties(this.currentIncidentID);
 
 
   constructor(
     private casualtiesSvc: CasualtiesService,
     private router: Router,
+    private incidentService: IncidentsService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.currentIncidentID = this.activatedRoute.params['incidentID'];
+    this.currentIncidentID = this.activatedRoute.snapshot.paramMap.get('incidentID');
+    this.currentIncident$ = this.incidentService.getIncident$(this.currentIncidentID);
+
   }
 
   ngOnInit() {
