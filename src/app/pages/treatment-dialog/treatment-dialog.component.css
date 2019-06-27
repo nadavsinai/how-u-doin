@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+
+  .container .id {
+      width: 100%;
+  }
+
+  .container .severity {
+    width: 100%;
+}
+
+.container .status {
+    width: 100%;
+}
+
+.container .time {
+    width: 90%;
+}
+
+.container .location {
+    width: 100%;
+}
+.container .notes {
+    width: 100%;
+}
+
+  .container .mat-radio-button {
+    margin: 0 12px;
+  }
+
+.container .past {
+    width: 100%;
+    vertical-align: text-top;
+}

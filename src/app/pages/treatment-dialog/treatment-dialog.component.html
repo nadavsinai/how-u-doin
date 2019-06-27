@@ -1,6 +1,7 @@
 <div class="container">
     <form class="treat-case" [formGroup]="formGroup">
         <table>
+            <tr><td><table>
             <tr>
                 <td colspan="2"><mat-form-field class="id">
                 <input matInput placeholder="ID"  formControlName="id">
@@ -14,18 +15,26 @@
                 <input matInput placeholder="Location" formControlName="location"  value="123.32e, 32.55n">
                 </mat-form-field></td>
             </tr>
-            <tr><td colspan="2">
+            <tr><td colspan="2" class="severity">
                 <label>Severity: </label>
                 <mat-radio-group formControlName="severity">
                     <mat-radio-button *ngFor="let sev of severities" [value]="sev">{{sev}}</mat-radio-button>
                 </mat-radio-group>
             </td></tr>
-            <tr><td colspan="2">
+            <tr><td colspan="2" class="status">
                 <label>Status: </label>
                 <mat-radio-group placeholder="Status" formControlName="statusss">
                     <mat-radio-button *ngFor="let st of statuses" [value]="st">{{st}}</mat-radio-button>
                 </mat-radio-group>
             </td></tr>
+            <tr><td colspan="2">
+                <mat-form-field class="notes">
+                    <textarea matInput placeholder="Treatment Notes" formControlName="notes"></textarea>
+                </mat-form-field>
+            </td></tr>
+            </table></td>
+            <td class="past">Past notes<br>BlaBlabla</td>
+        </tr>
         </table>
     </form>
 </div>

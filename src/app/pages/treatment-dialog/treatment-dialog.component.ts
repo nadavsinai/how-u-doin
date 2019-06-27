@@ -18,6 +18,7 @@ export class TreatmentDialogComponent implements OnInit {
     time: new FormControl({value: '', disabled: true}),
     severity: new FormControl(),
     statusss: new FormControl(),
+    notes: new FormControl(),
   });
 
   statuses = Object.values(Status);
