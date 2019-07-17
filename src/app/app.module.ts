@@ -86,7 +86,7 @@ import {CanvasComponent} from 'src/app/components/canvas-body.component';
     AngularFirestoreModule,
     NgxAuthFirebaseUIModule.forRoot(firebaseKeys),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDaivUsyEwoRvQ7kcoeHn6PWHzVFpgau9k'
+      apiKey: 'AIzaSyAVdnJ57wkf1e51YycrU8WDq6yvOLTZTck'
     })
   ],
 
